@@ -1,4 +1,6 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';// extraindo o componente Redirect da biblibotéca para trabalhar com redirecionamento.
+import { createUser } from '../services/userAPI';
 import Loading from './Loading';
 
 class Login extends React.Component {
@@ -9,6 +11,7 @@ class Login extends React.Component {
       isEnterBtnDisabled: true,
       loading: false,
       userName: '',
+      redirectTo: false,
     };
   }
 
@@ -29,16 +32,21 @@ class Login extends React.Component {
     }
   };
 
-  handleClickEnter = () => {
-    const { userName } = this.setState;
+  handleClickEnter = async () => { // função para criar e permitir acesso do usuário| mudar o estado do (loading)|após criar usuário redirecionar para (/search)
+    const { userName } = this.state;
+    this.setState({ loading: true });// mostra na tela o componente Loading
+    await createUser({ name: userName });// chama função createUser que recebe uma Promisse para criar um novo usuário
+    this.setState({ loading: false, redirectTo: true });// deixa de mostrar o componente Loading ma tela e redireciona para Search
   };
 
   render() {
-    const { userName, loading, isEnterBtnDisabled } = this.state;
-    const { hendleInputName } = this;
+    const { userName, isEnterBtnDisabled, loading, redirectTo } = this.state;
+    const { hendleInputName, handleClickEnter } = this;
+
     return (
       <div data-testid="page-login">
         {loading && (<Loading />)}
+        {redirectTo && (<Redirect to="/search" />)}
         <h1>Login</h1>
         <input
           type="text"
@@ -51,11 +59,7 @@ class Login extends React.Component {
           type="submit"
           data-testid="login-submit-button"
           disabled={ isEnterBtnDisabled }
-          onClick={ async () => {
-            this.setState({ loading: true });
-            await createUser({ name: userName });
-            this.setState({ loading: false });
-          } }
+          onClick={ handleClickEnter }
         >
           Entrar
         </button>

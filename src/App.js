@@ -2,7 +2,6 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Album from './pages/Album';
 import Favorites from './pages/Favorites';
-
 import Login from './pages/Login';
 import NotFound from './pages/NotFound';
 import Profile from './pages/Profile';
@@ -28,3 +27,6 @@ class App extends React.Component {
 }
 
 export default App;
+
+// Recursos que auxiliaram no desenvolvimento do projeto:
+// --> Curso React (Matheus Battisti): Implementando o React Router-#15-(https://www.youtube.com/watch?v=eJ8W3l371Jg&t=8s)
