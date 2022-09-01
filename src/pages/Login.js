@@ -35,7 +35,7 @@ class Login extends React.Component {
   handleClickEnter = async () => { // função para criar e permitir acesso do usuário| mudar o estado do (loading)|após criar usuário redirecionar para (/search)
     const { userName } = this.state;
     this.setState({ loading: true });// mostra na tela o componente Loading
-    await createUser({ name: userName });// chama função createUser que recebe uma Promisse para criar um novo usuário
+    await createUser({ name: userName });// chama função createUser que retorna uma Promisse para criar um novo usuário
     this.setState({ loading: false, redirectTo: true });// deixa de mostrar o componente Loading ma tela e redireciona para Search
   };
 
