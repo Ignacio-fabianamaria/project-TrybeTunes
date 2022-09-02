@@ -74,28 +74,31 @@ class Search extends React.Component {
                   Entrar
                 </button>
               </form>
-              { returnArtist // quando a requisição para buscar artista for true, retornar o artista buscado
-                 && (
-                   <div>
-                     <h3>{`Resultado de álbuns de: ${artistName}`}</h3>
-                     {console.log(artistName)}
-                     <ul>
-                       {
-                         albumList.map((album) => (
-                           <li key={ album.artistId }>
-                             <Link
-                               to={ `album/${album.collectionId}` }
-                               data-testid={ `link-to-album-${album.collectionId}` }
-                             >
-                               { album.collectionName}
-                             </Link>
-                           </li>
-                         ))
-                       }
-                     </ul>
-                   </div>)}
-              { returnArtist && (albumList === 0
-                   && (<h3>Nenhum álbum foi encontrado</h3>))}
+              { returnArtist === true && albumList.length > 0 // se ocorrer a requisição e albumLista receber um array de obejtos com os albums do artista
+                ? (
+                  <div>
+                    <h3>{`Resultado de álbuns de: ${artistName}`}</h3>
+                    {console.log(artistName)}
+                    <ul>
+                      { // albumLista reebe o retorno da requisição
+                        albumList.map((album) => (// usando .map em albumLista para retornar um array os albuns do artista pesquisado
+                          <li key={ album.collectionId }>
+                            <h4>{album.artistName}</h4>
+                            <img src={ album.artworkUrl100 } alt={ album.artistName } />
+                            <p>{album.releaseDate}</p>
+                            <p>{album.collectionName}</p>
+                            <Link
+                              to={ `album/${album.collectionId}` }
+                              data-testid={ `link-to-album-${album.collectionId}` }
+                            >
+                              { album.collectionName}
+                            </Link>
+                          </li>
+                        ))
+                      }
+                    </ul>
+                  </div>)
+                : (<h3>Nenhum álbum foi encontrado</h3>) }
             </div>
           )}
       </div>
