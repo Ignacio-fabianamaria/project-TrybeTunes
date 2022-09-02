@@ -20,9 +20,9 @@ class Album extends React.Component {
   showMusicList = async () => {
     const { match } = this.props;
     const { id } = match.params;
-    this.setState({ loading: true });
+    // this.setState({ loading: true });
     const retGetMusics = await getMusics(id);
-    this.setState({ musicList: retGetMusics, loading: false });
+    this.setState({ musicList: retGetMusics });
   };
 
   render() {
@@ -37,10 +37,10 @@ class Album extends React.Component {
   }
 }
 
-// Album.prototype = {
-// match: PropTypes.shape({
-//   params: PropTypes.shape({ id: PropTypes.string.isRequired })
-//     .isRequired }).isRequired,
-// };
+Album.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({ id: PropTypes.string.isRequired })
+      .isRequired }).isRequired,
+};
 
 export default Album;
