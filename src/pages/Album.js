@@ -9,7 +9,7 @@ class Album extends React.Component {
 
     this.state = {
       musicList: [],
-      loading: false,
+      // loading: false,
     };
   }
 
