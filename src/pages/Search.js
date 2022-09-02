@@ -80,13 +80,11 @@ class Search extends React.Component {
                     <h3>{`Resultado de álbuns de: ${artistName}`}</h3>
                     {console.log(artistName)}
                     <ul>
-                      { // albumLista reebe o retorno da requisição
-                        albumList.map((album) => (// usando .map em albumLista para retornar um array os albuns do artista pesquisado
-                          <li key={ album.artistName }>
+                      {
+                        albumList.map((album) => (
+                          <li key={ album.collectionId }>
                             <h4>{album.artistName}</h4>
-                            <img src={ album.artworkUrl100 } alt={ album.artistName } />
-                            <p>{album.releaseDate}</p>
-                            <p>{album.collectionName}</p>
+                            <img src={ album.artworkUrl100 } alt={ album.collectionId } />
                             <Link
                               to={ `album/${album.collectionId}` }
                               data-testid={ `link-to-album-${album.collectionId}` }
