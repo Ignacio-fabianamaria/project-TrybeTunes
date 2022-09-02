@@ -30,3 +30,5 @@ export default App;
 
 // Recursos que auxiliaram no desenvolvimento do projeto:
 // --> Curso React (Matheus Battisti): Implementando o React Router-#15-(https://www.youtube.com/watch?v=eJ8W3l371Jg&t=8s)
+// --> ReactJS - Como extrair parâmetros da url com React Router.(https://www.youtube.com/watch?v=wRk5o-pZxEU)
+// --> https://learn.co/lessons/react-router-params
