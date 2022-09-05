@@ -6,7 +6,6 @@ import Loading from '../pages/Loading';
 class MusicCard extends React.Component {
   constructor() {
     super();
-
     this.state = {
       loading: false,
       favoriteSongs: [],
@@ -22,7 +21,6 @@ class MusicCard extends React.Component {
   addFavoriteSong = async ({ target }) => { // função para favoritar e desfavoritar uma musica
     // descontruindo event.target
     const { song } = this.props;
-    console.log(song);
     if (target.checked) { // quando o checkbox favorite for selecionado:
       this.setState({ loading: true }); // --> passa loading para true enquento aguarda a resosta da função addSong
       await addSong(song); // após o retorno na função addSong:
@@ -31,7 +29,7 @@ class MusicCard extends React.Component {
     if (!target.checked) { // quando o checkbox não estiver mais clicado:
       this.setState({ loading: true }); // --> passar loading para true enquanto aguarda o retorno da função removeSong,
       await removeSong(song); // --> Chama a função removeSong,
-      await this.getFavoriteSongs();// --> chama novamente a função que recupera a lista de musicas favoritas
+      await this.saveFavoritesong();// --> chama novamente a função que recupera a lista de musicas favoritas
       this.setState({ loading: false });// --> após o retorno das funções acima, passa loading para false
     }
   };
@@ -57,8 +55,8 @@ class MusicCard extends React.Component {
             name="favorite"
             onClick={ addFavoriteSong }
             data-testid={ `checkbox-music-${trackId}` }
-            defaultChecked={ favoriteSongs
-              .some((e) => e.trackName === trackName) }
+            checked={ favoriteSongs
+              .find((e) => e.trackName === trackName) }
           />
         </label>
         <audio data-testid="audio-component" src={ previewUrl } controls>
