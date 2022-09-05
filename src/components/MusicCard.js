@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { addSong } from '../services/favoriteSongsAPI';
+import { addSong, getFavoriteSongs } from '../services/favoriteSongsAPI';
 import Loading from '../pages/Loading';
 
 class MusicCard extends React.Component {
@@ -9,7 +9,14 @@ class MusicCard extends React.Component {
 
     this.state = {
       loading: false,
+      favoriteSongs: [],
     };
+  }
+
+  componentDidMount() {
+    // usando o ciclo de vida (Montagem) para chamar a função showUsersaveFavoritesong
+    // e recuperar a lista de musicas favoritadas assim que entrar na página
+    this.saveFavoritesong();
   }
 
   addFavoriteSong = async ({ target }) => { // função para favoritar uma musica
@@ -23,10 +30,16 @@ class MusicCard extends React.Component {
     }
   };
 
+  saveFavoritesong = async () => { // função para recuperar as musicas favoritadas
+    this.setState({ favoriteSongs: [] });
+    const retGetFavoriteSongs = await getFavoriteSongs();
+    this.setState({ favoriteSongs: retGetFavoriteSongs });
+  };
+
   render() {
     const { previewUrl, trackName, trackId } = this.props;
     const { addFavoriteSong } = this;
-    const { loading } = this.state;
+    const { loading, favoriteSongs } = this.state;
 
     return (
       //  <audio> tag de audio para exivir as musicas
@@ -39,6 +52,7 @@ class MusicCard extends React.Component {
             name="favorite"
             onClick={ addFavoriteSong }
             data-testid={ `checkbox-music-${trackId}` }
+            checked={ favoriteSongs.some((e) => e.trackName === trackName) }
           />
         </label>
         <audio data-testid="audio-component" src={ previewUrl } controls>
