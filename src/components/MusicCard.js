@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { addSong, getFavoriteSongs } from '../services/favoriteSongsAPI';
+import { addSong, getFavoriteSongs, removeSong } from '../services/favoriteSongsAPI';
 import Loading from '../pages/Loading';
 
 class MusicCard extends React.Component {
@@ -19,7 +19,7 @@ class MusicCard extends React.Component {
     this.saveFavoritesong();
   }
 
-  addFavoriteSong = async ({ target }) => { // função para favoritar uma musica
+  addFavoriteSong = async ({ target }) => { // função para favoritar e desfavoritar uma musica
     // descontruindo event.target
     const { song } = this.props;
     console.log(song);
@@ -28,10 +28,15 @@ class MusicCard extends React.Component {
       await addSong(song); // após o retorno na função addSong:
       this.setState({ loading: false });// --> retorna loading para false.
     }
+    if (!target.checked) { // quando o checkbox não estiver mais clicado:
+      this.setState({ loading: true }); // --> passar loading para true enquanto aguarda o retorno da função removeSong,
+      await removeSong(song); // --> Chama a função removeSong,
+      await this.getFavoriteSongs();// --> chama novamente a função que recupera a lista de musicas favoritas
+      this.setState({ loading: false });// --> após o retorno das funções acima, passa loading para false
+    }
   };
 
   saveFavoritesong = async () => { // função para recuperar as musicas favoritadas
-    this.setState({ favoriteSongs: [] });
     const retGetFavoriteSongs = await getFavoriteSongs();
     this.setState({ favoriteSongs: retGetFavoriteSongs });
   };
@@ -52,7 +57,8 @@ class MusicCard extends React.Component {
             name="favorite"
             onClick={ addFavoriteSong }
             data-testid={ `checkbox-music-${trackId}` }
-            checked={ favoriteSongs.some((e) => e.trackName === trackName) }
+            defaultChecked={ favoriteSongs
+              .some((e) => e.trackName === trackName) }
           />
         </label>
         <audio data-testid="audio-component" src={ previewUrl } controls>
