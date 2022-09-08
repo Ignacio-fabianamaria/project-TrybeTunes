@@ -21,12 +21,14 @@ class MusicCard extends React.Component {
   addFavoriteSong = async ({ target }) => { // função para favoritar e desfavoritar uma musica
     // descontruindo event.target
     const { song } = this.props;
+    console.log(song);
     if (target.checked) { // quando o checkbox favorite for selecionado:
       this.setState({ loading: true }); // --> passa loading para true enquento aguarda a resosta da função addSong
-      await addSong(song); // após o retorno na função addSong:
+      await addSong(song);// após o retorno na função addSong:
+      await this.saveFavoritesong();// --> chama novamente a função que recupera a lista de musicas favoritas
       this.setState({ loading: false });// --> retorna loading para false.
-    }
-    if (!target.checked) { // quando o checkbox não estiver mais clicado:
+    } else {
+      // quando o checkbox não estiver mais clicado:
       this.setState({ loading: true }); // --> passar loading para true enquanto aguarda o retorno da função removeSong,
       await removeSong(song); // --> Chama a função removeSong,
       await this.saveFavoritesong();// --> chama novamente a função que recupera a lista de musicas favoritas
@@ -37,6 +39,7 @@ class MusicCard extends React.Component {
   saveFavoritesong = async () => { // função para recuperar as musicas favoritadas
     const retGetFavoriteSongs = await getFavoriteSongs();
     this.setState({ favoriteSongs: retGetFavoriteSongs });
+    console.log(retGetFavoriteSongs);
   };
 
   render() {
@@ -53,7 +56,7 @@ class MusicCard extends React.Component {
           <input
             type="checkbox"
             name="favorite"
-            onClick={ addFavoriteSong }
+            onChange={ addFavoriteSong }
             data-testid={ `checkbox-music-${trackId}` }
             checked={ favoriteSongs
               .find((e) => e.trackName === trackName) }
@@ -68,6 +71,7 @@ class MusicCard extends React.Component {
     );
   }
 }
+
 // Validação das props
 MusicCard.propTypes = {
   previewUrl: PropTypes.string.isRequired,

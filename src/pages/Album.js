@@ -52,6 +52,7 @@ class Album extends React.Component {
           { musicList.map((e) => (// usando .map em musicList para listar as músicas que são exibidas pelo componente MusicCard
             <MusicCard
               key={ e.trackId }
+              song={ e }
               trackName={ e.trackName }
               previewUrl={ e.previewUrl }
               trackId={ e.trackId }
