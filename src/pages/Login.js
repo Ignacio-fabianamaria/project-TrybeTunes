@@ -2,6 +2,7 @@ import React from 'react';
 import { Redirect } from 'react-router-dom';// extraindo o componente Redirect da biblibotéca para trabalhar com redirecionamento.
 import { createUser } from '../services/userAPI';
 import Loading from './Loading';
+import './login.css';
 
 class Login extends React.Component {
   constructor() {
@@ -44,26 +45,30 @@ class Login extends React.Component {
     const { hendleInputName, handleClickEnter } = this;
 
     return (
-      <div data-testid="page-login">
+      <section data-testid="page-login">
         {loading && (<Loading />)}
         {redirectTo && (<Redirect to="/search" />)}
-        <h1>Login</h1>
-        <input
-          type="text"
-          data-testid="login-name-input"
-          placeholder="nome"
-          value={ userName }
-          onChange={ hendleInputName }
-        />
-        <button
-          type="submit"
-          data-testid="login-submit-button"
-          disabled={ isEnterBtnDisabled }
-          onClick={ handleClickEnter }
-        >
-          Entrar
-        </button>
-      </div>
+        <div>
+          <img src="./logo-login.png" alt="imagem-logo" className="logo-login" />
+        </div>
+        <form>
+          <input
+            type="text"
+            data-testid="login-name-input"
+            placeholder="nome"
+            value={ userName }
+            onChange={ hendleInputName }
+          />
+          <button
+            type="submit"
+            data-testid="login-submit-button"
+            disabled={ isEnterBtnDisabled }
+            onClick={ handleClickEnter }
+          >
+            Entrar
+          </button>
+        </form>
+      </section>
     );
   }
 }
