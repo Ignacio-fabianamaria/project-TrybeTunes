@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import Loading from '../pages/Loading';
 import { getUser } from '../services/userAPI';
 
+import './header.css';
+
 class Header extends React.Component {
   constructor() {
     super();
@@ -32,7 +34,7 @@ class Header extends React.Component {
           : <p data-testid="header-user-name">{ userName.name }</p>}
         { showUser }
         <nav>
-          <ul>
+          <ul className="menu">
             <li>
               <Link to="/search" data-testid="link-to-search">Pesquizar</Link>
             </li>

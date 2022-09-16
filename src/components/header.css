@@ -1,0 +1,25 @@
+
+[data-testid="header-component"] {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #D8BFD8;
+    width: 1650px;
+    margin-top: 5px;
+}
+
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+    margin-left: 20px;
+    gap: 50px;
+    
+}

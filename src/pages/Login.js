@@ -60,7 +60,7 @@ class Login extends React.Component {
             onChange={ hendleInputName }
           />
           <button
-            type="submit"
+            type="button"
             data-testid="login-submit-button"
             disabled={ isEnterBtnDisabled }
             onClick={ handleClickEnter }

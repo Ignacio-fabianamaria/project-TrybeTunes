@@ -4,6 +4,8 @@ import Header from '../components/Header';
 import searchAlbumsAPIs from '../services/searchAlbumsAPI';
 import Loading from './Loading';
 
+import '../styles/search.css';
+
 class Search extends React.Component {
   constructor() {
     super();
@@ -55,9 +57,9 @@ class Search extends React.Component {
         <Header />
         {loading ? (<Loading />)
           : (
-            <div>
+            <div className="container-search">
               <form>
-                <h1>Pesquisar Artista</h1>
+                <h1 className="title-search">Pesquisar Artista</h1>
                 <input
                   type="search"
                   data-testid="search-artist-input"
