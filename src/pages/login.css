@@ -16,23 +16,50 @@ body {
 
 .logo-login {
     width: 400px;
-    margin-bottom: 20px;
+    margin-bottom: 35px;
+    --cor-logo: #f1b;
+    animation: logo 1s alternate infinite ease-in-out;
+    
+}
+
+@keyframes logo {
+    from {
+        filter: drop-shadow( 0 0 0 var(--cor-logo));
+    }
+    to {
+        filter: drop-shadow( 0 0 20px var(--cor-logo));
+    }
 }
 
 [data-testid="login-name-input"] {
     padding: 7px;
-    border-radius: 3px;
+    border-radius: 5px;
     border: none;
     margin-right: 25px;
     width: 280px;
+    color: rgb(248, 10, 181);
+}
+
+[data-testid="login-name-input"]:hover {
+    transform: scale(1.1 );
+    transition: 0.5s; 
 }
 
 [data-testid="login-submit-button"] {
     padding: 6px;
-    border-radius: 3px;
-    border: none;
-    width: 70px;
-    background-color:#9400D3;
+    width: 75px;
+    font-weight: 600;   
+    font-size: 15px;
+    border-radius: 5px;
+    background-color: #f1b;
     color: white;
-    font-weight: 600;
+   
+   cursor: pointer;
 }
+[data-testid="login-submit-button"]:hover {
+    transform: scale(1.1 );
+    transition: 0.5s;
+}
+
+
+
