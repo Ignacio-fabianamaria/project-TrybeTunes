@@ -1,5 +1,7 @@
+/*background-color:#D8BFD8;*/
+
 body {
-    background-color:#D8BFD8;
+    background-color: black;
     display: flex;
     justify-content: center;
     width: 100%;
@@ -11,12 +13,12 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 100px;
+    margin-top: 50px;
 }
 
 .logo-login {
     width: 400px;
-    margin-bottom: 35px;
+    margin-bottom: 60px;
     --cor-logo: #f1b;
     animation: logo 1s alternate infinite ease-in-out;
     
@@ -27,18 +29,29 @@ body {
         filter: drop-shadow( 0 0 0 var(--cor-logo));
     }
     to {
-        filter: drop-shadow( 0 0 20px var(--cor-logo));
+        filter: drop-shadow( 0 0 30px var(--cor-logo));
     }
 }
 
 [data-testid="login-name-input"] {
-    padding: 7px;
-    border-radius: 5px;
-    border: none;
     margin-right: 25px;
+    font-weight: 700;
     width: 280px;
-    color: rgb(248, 10, 181);
+    padding: 7px;
+    border-radius: 6px;
+    border: 2px solid transparent;
+    box-shadow: 0px 0px 20px 1px transparent;
+    outline: none;
+    transition: box-shadow 0.4s linear,
+                border-color 0.4s linear;
+    
 }
+
+[data-testid="login-name-input"]:focus {
+    border-color:#f1b;
+    box-shadow: 0px 0px 20px 1px #f1b;
+}
+
 
 [data-testid="login-name-input"]:hover {
     transform: scale(1.1 );
@@ -53,9 +66,9 @@ body {
     border-radius: 5px;
     background-color: #f1b;
     color: white;
-   
    cursor: pointer;
 }
+
 [data-testid="login-submit-button"]:hover {
     transform: scale(1.1 );
     transition: 0.5s;
