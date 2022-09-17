@@ -1,7 +1,7 @@
 /*background-color:#D8BFD8;*/
 
 body {
-    background-color:black;
+    background-color:#D8BFD8;
     display: flex;
     justify-content: center;
     width: 100%;
@@ -14,7 +14,10 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 50px;
+    border: solid 1px white;
+    width: 1665px;
+    height: 862px;
+    background-color: black;
 }
 
 .logo-login {
@@ -37,7 +40,7 @@ body {
 [data-testid="login-name-input"] {
     margin-right: 25px;
     font-weight: 700;
-    width: 20px;
+    width: 280px;
     padding: 7px;
     border-radius: 6px;
     border: 2px solid transparent;

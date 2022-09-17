@@ -30,6 +30,7 @@ class Header extends React.Component {
     const { showUser } = this;
     return (
       <header data-testid="header-component">
+        <img src="./hadset.png" alt="imagem-hadset" className="hadset-header" />
         {loading ? (<Loading />)
           : <p data-testid="header-user-name">{ userName.name }</p>}
         { showUser }
