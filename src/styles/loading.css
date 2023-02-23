@@ -1,0 +1,32 @@
+
+
+[data-testid="page-loading"] {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   gap: 5px;
+}
+
+.text-loading {
+   color: #f1b;
+}
+
+.loading-animation {
+   color: black;
+   animation: is-rotating 1s infinite;
+   border: 6px solid #f1b;
+   border-top-color: white;
+   border-radius: 50%;
+   display: flex;
+   height: 20px;
+   justify-content: center;
+   width: 20px;
+ }
+ 
+ @keyframes is-rotating {
+ 
+   to {
+     transform: rotate(1turn);
+   }
+ }
+

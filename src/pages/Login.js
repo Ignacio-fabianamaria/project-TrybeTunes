@@ -19,7 +19,7 @@ class Login extends React.Component {
   hendleInputName = ({ target }) => { // função para capturar o value do input userName e chamar função que valida o botão Entrar.
     // desconstruindo  event.target
     const { value } = target; // acessando propriedade value do imput
-    this.setState({ userName: value }, () => this.validateBtnEnter());
+    this.setState({ userName: value }, this.validateBtnEnter);
   };
 
   validateBtnEnter = () => { // função para validar os critérios do botão Entrar
@@ -38,6 +38,7 @@ class Login extends React.Component {
     this.setState({ loading: true });// mostra na tela o componente Loading
     await createUser({ name: userName });// chama função createUser que retorna uma Promisse para criar um novo usuário
     this.setState({ loading: false, redirectTo: true });// deixa de mostrar o componente Loading ma tela e redireciona para Search
+    // usar history.push(rota)
   };
 
   render() {

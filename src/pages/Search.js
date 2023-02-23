@@ -78,16 +78,19 @@ class Search extends React.Component {
               </form>
               { returnArtist === true && albumList.length > 0 // se ocorrer a requisição e albumLista receber um array de obejtos com os albums do artista
                 ? (
-                  <div>
-                    <h3>{`Resultado de álbuns de: ${artistName}`}</h3>
-                    {console.log(artistName)}
-                    <ul>
+                  <div className="albuns">
+                    <h3>{ artistName }</h3>
+                    <ul className="list-albuns">
                       {
                         albumList.map((album) => (
-                          <li key={ album.collectionId }>
-                            <h4>{album.artistName}</h4>
-                            <img src={ album.artworkUrl100 } alt={ album.collectionId } />
+                          <li key={ album.collectionId } className="card-album">
+                            <img
+                              src={ album.artworkUrl100 }
+                              alt={ album.collectionId }
+                              className="img-album"
+                            />
                             <Link
+                              className="name-album"
                               to={ `album/${album.collectionId}` }
                               data-testid={ `link-to-album-${album.collectionId}` }
                             >

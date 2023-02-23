@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { addSong, getFavoriteSongs, removeSong } from '../services/favoriteSongsAPI';
 import Loading from '../pages/Loading';
 
+import '../styles/music-card.css';
+
 class MusicCard extends React.Component {
   constructor() {
     super();
@@ -49,24 +51,29 @@ class MusicCard extends React.Component {
 
     return (
       //  <audio> tag de audio para exivir as musicas
-      <div>
+      <div className="page-musicacard">
         {loading && (<Loading />)}
-        <label htmlFor="favorite">
-          Favorita
-          <input
-            type="checkbox"
-            name="favorite"
-            onChange={ addFavoriteSong }
-            data-testid={ `checkbox-music-${trackId}` }
-            checked={ favoriteSongs
-              .find((e) => e.trackName === trackName) }
-          />
-        </label>
-        <audio data-testid="audio-component" src={ previewUrl } controls>
-          <track kind="captions" />
-          <code>audio</code>
-        </audio>
-        <p>{ trackName }</p>
+        <div className="musiccard">
+          <div className="card-audio">
+            <audio data-testid="audio-component" src={ previewUrl } controls>
+              <track kind="captions" />
+              <code>audio</code>
+            </audio>
+            <p>{ trackName }</p>
+          </div>
+          <label htmlFor="favorite" className="like">
+            Favoritar
+            <input
+              type="checkbox"
+              name="favorite"
+              onChange={ addFavoriteSong }
+              data-testid={ `checkbox-music-${trackId}` }
+              checked={ favoriteSongs
+                .find((e) => e.trackName === trackName) }
+            />
+          </label>
+
+        </div>
       </div>
     );
   }

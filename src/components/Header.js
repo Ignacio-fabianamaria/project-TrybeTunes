@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Loading from '../pages/Loading';
 import { getUser } from '../services/userAPI';
 
-import './header.css';
+import '../styles/header.css';
 
 class Header extends React.Component {
   constructor() {
@@ -22,7 +22,7 @@ class Header extends React.Component {
   showUser = async () => { // função exibir Loading enquanto  função getUser carrega o nome do usuário e exibe este nome no Header
     this.setState({ loading: true });// exibindo o componente Loading
     const user = await getUser();// guardando o retorno, que é uma Promisse, da função getUser em uma cont
-    this.setState({ userName: user, loading: false });// exibindo o nome do usuário, que foi gerado pela GetUser, no componente Header
+    this.setState({ loading: false, userName: user });// exibindo o nome do usuário, que foi gerado pela GetUser, no componente Header
   };
 
   render() {
@@ -30,14 +30,20 @@ class Header extends React.Component {
     const { showUser } = this;
     return (
       <header data-testid="header-component">
-        <img src="./hadset.png" alt="imagem-hadset" className="hadset-header" />
         {loading ? (<Loading />)
-          : <p data-testid="header-user-name">{ userName.name }</p>}
+          : (
+            <div className="user-container">
+              <div className="box-user">
+                <img src="/profile.png" alt="imagem-logo" className="user-img" />
+                <p data-testid="header-user-name">{ userName.name }</p>
+              </div>
+            </div>)}
         { showUser }
         <nav>
           <ul className="menu">
+
             <li>
-              <Link to="/search" data-testid="link-to-search">Pesquizar</Link>
+              <Link to="/search" data-testid="link-to-search">Pesquisar</Link>
             </li>
             <li>
               <Link to="/favorites" data-testid="link-to-favorites">
