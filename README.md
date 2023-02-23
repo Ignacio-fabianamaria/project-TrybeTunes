@@ -1,8 +1,9 @@
-#  Projeto TrybeTunes 🎵 🎧 🎧 🎵
+#  Projeto TrybeTunes 🎵 🎧❤️🎧 🎵
 
 <div align="center">
   
-![Carousel](carousel.gif)
+![Login](login.png)
+![Search](pesquisa.png)  
   
 </div> 
 
