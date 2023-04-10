@@ -30,10 +30,13 @@ class Favorites extends React.Component {
         <div className="music-favoritelist">
           {
             (
-              favoriteList.map((music) => (
+              favoriteList.map((song) => (
                 <MusicCard
-                  music={ music }
-                  key={ music.trackId }
+                  key={ song.trackId }
+                  previewUrl={ song.previewUrl }
+                  trackName={ song.trackName }
+                  trackId={ song.trackId }
+                  song={ song }
                   FavoriteSongs={ this.FavoriteSongs }
                 />))
             )
